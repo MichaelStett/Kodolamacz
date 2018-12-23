@@ -1,9 +1,11 @@
 def main():
     # print(sprytne(2,13))  
     # czyPalindrom()
-    x = input("Podaj napis1: ")
-    y = input("Podaj napis2: ")
-    print(czyAnagram(x, y))
+    # x = input("Podaj napis1: ")
+    # y = input("Podaj napis2: ")
+    # print(czyAnagram(x, y))
+    Lista = [1,2,3,4]
+    print(moda(Lista))
 
 def sprytne(x,y):
     if y == 1: 
@@ -54,6 +56,17 @@ def czyAnagram(napis1, napis2):
         return all(value == 0 for value in alfabet.values())
     else: 
         return False
+
+def moda(liczby):
+    hold = {}
+
+    for i in range(0, len(liczby)):
+        if liczby[i] in hold:
+            hold[liczby[i]] =+ 1
+        else:
+            hold[liczby[i]] = 0
+    
+    return max(k for k, v in hold.items() if v != 0)
 
 if __name__ == "__main__":
     main()
