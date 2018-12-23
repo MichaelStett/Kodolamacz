@@ -1,6 +1,9 @@
 def main():
     # print(sprytne(2,13))  
-    czyPalindrom()
+    # czyPalindrom()
+    x = input("Podaj napis1: ")
+    y = input("Podaj napis2: ")
+    print(czyAnagram(x, y))
 
 def sprytne(x,y):
     if y == 1: 
@@ -29,6 +32,28 @@ def czyPalindrom():
         print(flag)
     else: 
         print(flag)
+
+def czyAnagram(napis1, napis2):
+    alfabet = { "a" : 0, "b" : 0, "c" : 0,
+                "d" : 0, "e" : 0, "f" : 0,
+                "g" : 0, "h" : 0, "i" : 0,
+                "j" : 0, "k" : 0, "l" : 0,
+                "m" : 0, "n" : 0, "o" : 0,
+                "p" : 0, "q" : 0, "r" : 0,
+                "s" : 0, "t" : 0, "u" : 0,
+                "w" : 0, "v" : 0, "x" : 0,
+                "y" : 0, "z" : 0,}
+
+    if len(napis1) == len(napis2):
+        for i in range(0,26):
+            for j in range(0, len(napis1)):
+                if chr(ord('a') + i) == napis1[j]:
+                    alfabet[chr(ord('a') + i)] += 1
+                if chr(ord('a') + i) == napis2[j]:
+                    alfabet[chr(ord('a') + i)] -= 1        
+        return all(value == 0 for value in alfabet.values())
+    else: 
+        return False
 
 if __name__ == "__main__":
     main()
