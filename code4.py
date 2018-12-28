@@ -53,7 +53,7 @@ class Zespolona:
             print(f"{self.re}+{self.im}i")
 
     def modul(self): # zaookrąglona do 4 miejsc po przecinku
-        print(round(math.sqrt(self.re**2 + self.im**2), 4))  
+        print("Moduł: ",round(math.sqrt(self.re**2 + self.im**2), 4))  
 
     @staticmethod
     def dodaj(z1, z2):
@@ -101,6 +101,7 @@ class Ulamek:
         return wynik       
     
 def main():
+    print("\nFunkcjaKwadratowa: ")
     #region FunkcjaKwadratowa
     FunkcjaKwadratowa(1, 6, 5).Rozwiaz() # delta dodatnia ( 4 )
     FunkcjaKwadratowa(1, 0, 4).Rozwiaz() # delta ujemna ( -16 )
@@ -111,36 +112,51 @@ def main():
     FunkcjaKwadratowa(0, 0 ,0).Rozwiaz() # a == 0 and b == 0 and c == 0
     #endregion
     
-    print()
+    print("\nZespolona: ")
 
     #region Zespolona
-    Z1 = Zespolona(3,4)
+    Z1 = Zespolona(3,4) # 3+4i
+    Z2 = Zespolona(2,-1) # 2-1i
+
+    print("Z1: ", end="")
     Z1.print()
     Z1.modul()
-    Z2 = Zespolona(2,-1)
+    
+    print("Z2: ", end="")
     Z2.print()
-    Zespolona.dodaj(Z1, Z2).print()
+    Z2.modul()
+
+    print("Suma: ", end="")
+    Zespolona.dodaj(Z1, Z2).print()    
+    print("Iloczyn: ", end="")
     Zespolona.mnoz(Z1, Z2).print()
     Z1,Z2 = None,None    
     #endregion
 
-    print()
+    print("\nUłamek: ")
 
     #region Ulamek
     U1 = Ulamek(60,48) # skracany do 5/4
+    U2 = Ulamek( 3, 4)  # skrocony
+
+    print("Pierwszy przed skróceniem: ", end="")
     U1.print()
     U1.skroc()
+    print("Pierwszy po skróceniu: ", end="")
     U1.print()
-    U2 = Ulamek(3, 4)    
+    
+    print("Drugi ułamek: ", end="")
     U2.print()
-    print("Suma: ")
+
+    print("Suma: ", end="")
     Ulamek.dodaj(U1, U2).print()
-    print("Różnica: ")
+    print("Różnica: ", end="")
     Ulamek.odejmij(U1, U2).print()
-    print("Iloczyn: ")
+    print("Iloczyn: ", end="")
     Ulamek.mnoz(U1, U2).print()
-    print("Dzielenie: ")
+    print("Dzielenie: ", end="")
     Ulamek.dziel(U1, U2).print()
+    U1,U2 = None,None
     #endregion
 
 if __name__ == "__main__":
