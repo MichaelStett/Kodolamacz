@@ -63,8 +63,45 @@ class Zespolona:
     def mnoz(z1, z2): # (a+bi)*(c+di) = ac-bd + (bc+ad)i
         return Zespolona(z1.re*z2.re-z1.im*z2.im, z1.im*z2.re + z1.re*z2.im)
     
+class Ulamek:
+    def __init__(self, a, b):
+        self.a = a # licznik
+        self.b = b # mianownik
+
+    def print(self):
+        print(f"({self.a}) / ({self.b})")
+
+    def skroc(self):
+        nwd = math.gcd(self.a, self.b)       
+        self.a //= nwd # dzielenie
+        self.b //= nwd # bez reszty
+
+    @staticmethod
+    def dodaj(u1, u2):
+        wynik = Ulamek(u1.a * u2.b + u2.a * u1.b, u1.b * u2.b)
+        wynik.skroc()
+        return wynik
+
+    @staticmethod
+    def odejmij(u1, u2): 
+        wynik = Ulamek(u1.a * u2.b - u2.a * u1.b, u1.b * u2.b)
+        wynik.skroc()
+        return wynik        
+
+    @staticmethod
+    def mnoz(u1, u2):
+        wynik = Ulamek(u1.a * u2.a, u1.b * u2.b)
+        wynik.skroc()
+        return wynik        
+
+    @staticmethod
+    def dziel(u1, u2): 
+        wynik = Ulamek(u1.a * u2.b, u1.b * u2.a)
+        wynik.skroc()
+        return wynik       
+    
 def main():
-    #region FunkcjaKwadratowa 
+    #region FunkcjaKwadratowa
     FunkcjaKwadratowa(1, 6, 5).Rozwiaz() # delta dodatnia ( 4 )
     FunkcjaKwadratowa(1, 0, 4).Rozwiaz() # delta ujemna ( -16 )
     FunkcjaKwadratowa(1,10,25).Rozwiaz() # delta zero ( 0 )
@@ -85,6 +122,25 @@ def main():
     Zespolona.dodaj(Z1, Z2).print()
     Zespolona.mnoz(Z1, Z2).print()
     Z1,Z2 = None,None    
+    #endregion
+
+    print()
+
+    #region Ulamek
+    U1 = Ulamek(60,48) # skracany do 5/4
+    U1.print()
+    U1.skroc()
+    U1.print()
+    U2 = Ulamek(3, 4)    
+    U2.print()
+    print("Suma: ")
+    Ulamek.dodaj(U1, U2).print()
+    print("Różnica: ")
+    Ulamek.odejmij(U1, U2).print()
+    print("Iloczyn: ")
+    Ulamek.mnoz(U1, U2).print()
+    print("Dzielenie: ")
+    Ulamek.dziel(U1, U2).print()
     #endregion
 
 if __name__ == "__main__":
