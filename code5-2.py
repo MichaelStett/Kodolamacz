@@ -86,6 +86,17 @@ class Dzielenie(Dzialanie):
     def Wartosc(self):
         return self._Dzialanie__a.Wartosc() / self._Dzialanie__b.Wartosc()
 
+class Silnia(Wezel):
+    def __init__(self, a):
+        super().__init__(__class__.__name__)
+        self.__a = a
+
+    def Wypisz(self):
+        super().Wypisz()
+        print(f"{self.__a.Wartosc()}! = {self.Wartosc()}", end='')
+
+    def Wartosc(self):
+        return math.factorial(self.__a.Wartosc())
 
 if __name__ == "__main__":
     Liczba_5 = Liczba(5)
@@ -111,3 +122,5 @@ if __name__ == "__main__":
         Dodawanie(Liczba_3, Liczba_4m), 
         Odejmowanie(Liczba_12, Liczba_5)
         ).Wypisz()
+
+    Silnia(Liczba_5).Wypisz()
